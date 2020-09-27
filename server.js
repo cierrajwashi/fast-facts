@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const StatementRoute = require("./routes/statementRoute");
 // ... other imports
 const path = require("path");
 
@@ -21,11 +20,35 @@ mongoose
   .then(() => console.log("mongodb connected successfully"))
   .catch(() => console.log("err"));
 
-app.use("/", StatementRoute);
-app.use(express.static(path.join(__dirname, "client/build")));
+const StatementSchema = new mongoose.Schema({
+  statement: String,
+  answer: String,
+});
+
+const Statements = mongoose.model("Statements", StatementSchema);
+
+app.post("/api/statement", (req, res) => {
+  Statements.create(req.body)
+    .then((statement) => res.send(statement))
+    .catch((err) => console.log(err));
+});
+
+app.get("/api/statements", (req, res) => {
+  Statements.find({})
+    .then((statement) => res.json(statement))
+    .catch((err) => console.log(err));
+});
+
+app.delete("/api/statements", (req, res) => {
+  Statements.remove()
+    .then((statement) => res.json(statement))
+    .catch((err) => console.log(err));
+});
+
+app.use(express.static(path.join(__dirname, "build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(PORT, () => {
