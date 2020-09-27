@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Episode.css";
+import { Input, Button } from "@material-ui/core";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Episode() {
@@ -27,31 +28,35 @@ function Episode() {
       .then((res) => res.json())
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    console.log(episode);
   };
 
   return (
     <div className="Home">
-      <header className="episode">
-        <p>Welcome to Fast Facts!</p>
-        <h3>Create your own game!</h3>
-        <form onSubmit={handleSubmit}>
-          <input
+      <header className="Episode-header">
+        <h3>Add Questions to Your Game:</h3>
+        <form className="AnswerForm" onSubmit={handleSubmit}>
+          <Input
+            className="Question"
             type="text"
-            placeholder="enter statement"
+            placeholder="statement"
             onChange={handleChange}
             name="statement"
           />
-          <input
+          <Input
+            className="Question"
             type="text"
-            placeholder="enter answer"
+            placeholder="answer (true/false)"
             onChange={handleChange}
             name="answer"
           />
-          <button>Submit</button>
+          <Button className="SubmitButton" onClick={handleSubmit}>
+            Submit
+          </Button>
         </form>
 
-        <Link to="/game">Proceed to game</Link>
+        <Button className="ButtonLink" component={Link} to={"/game"}>
+          Start Game
+        </Button>
       </header>
     </div>
   );

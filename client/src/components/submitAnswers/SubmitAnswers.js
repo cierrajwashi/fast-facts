@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./SubmitStatements.css";
+import { Input, Button } from "@material-ui/core";
+import "./SubmitAnswers.css";
 
-function SubmitStatements() {
+function SubmitAnswers() {
   const [statements, setStatements] = useState([]);
   const [randomStatement, setRandomStatement] = useState({});
   const [answer, setAnswer] = useState("");
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:5000/statements")
@@ -14,17 +16,15 @@ function SubmitStatements() {
 
   const selectStatement = () => {
     var randomStatement = Math.floor(Math.random() * statements.length);
-    console.log(statements[randomStatement]);
     setRandomStatement(statements[randomStatement]);
   };
 
   const compare = (myanswer) => {
-    console.log(randomStatement.answer, "random answer");
-    console.log(myanswer, "answer");
     if (myanswer === randomStatement.answer) {
-      setAnswer("correct!");
+      setAnswer("Correct!");
+      setScore((score) => score + 5);
     } else {
-      setAnswer("incorrect");
+      setAnswer("Incorrect");
     }
   };
 
@@ -34,30 +34,39 @@ function SubmitStatements() {
   };
 
   return (
-    <div className="Home">
-      <header className="statement-header">
-        <button onClick={selectStatement}>select random question</button>
-        <h3>Submit a statement</h3>
-        {randomStatement && <p>{randomStatement.statement}</p>}
-        <form>
-          <input
+    <div className="Answers">
+      <header className="Answers-header">
+        <Button className="Button" onClick={selectStatement}>
+          Shuffle Trivia Questions
+        </Button>
+      </header>
+      <div className="Answer">
+        {randomStatement && <h2>{randomStatement.statement}</h2>}
+        <h3 className="Titles">Guess:</h3>
+        <form className="Form">
+          <Input
+            className="True"
             name="bool"
             type="button"
             value={true}
             onClick={handleChange}
           />
-          <input
+          <Input
+            className="False"
             name="bool"
             type="button"
             value={false}
             onClick={handleChange}
           />
         </form>
-        <h3>Answer</h3>
         {answer && <h2>{answer}</h2>}
-      </header>
+        <h3 className="Titles">Score:</h3>
+        <span>
+          <h2>{score}</h2>
+        </span>
+      </div>
     </div>
   );
 }
 
-export default SubmitStatements;
+export default SubmitAnswers;

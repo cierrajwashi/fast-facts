@@ -1,0 +1,48 @@
+.Answers {
+  background: rgba(175, 139, 139, 0.5);
+  box-shadow: 2px 2px 3px 4px black;
+  background-color: #210719;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.True {
+  background-color: #73825e;
+  color: white !important;
+  padding: 5px;
+}
+
+.False {
+  background-color: #c30133;
+  color: white !important;
+  padding: 5px;
+}
+
+.Answer {
+  color: white;
+  font-size: x-large !important;
+  padding: 15px;
+}
+
+.Answers-header {
+  font-size: x-large;
+  color: white;
+}
+
+.Form {
+  display: flex;
+  width: 15%;
+  justify-content: space-between;
+  color: #c50239 !important;
+  font-size: large !important;
+}
+
+.Button {
+  color: #c50239 !important;
+  font-size: large !important;
+}
+
+.Titles {
+  color: #beb088;
+  font-size: x-large;
+}

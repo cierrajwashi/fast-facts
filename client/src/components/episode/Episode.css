@@ -1,0 +1,25 @@
+.SubmitButton {
+  color: #c50239 !important;
+  font-size: large !important;
+}
+
+.Episode-header {
+  font-size: x-large;
+  color: white;
+}
+
+.ButtonLink {
+  color: #c50239 !important;
+  font-size: large !important;
+}
+
+.Question {
+  font-size: x-large !important;
+  color: white !important;
+  display: block;
+}
+
+.AnswerForm {
+  display: flex;
+  justify-content: space-between;
+}

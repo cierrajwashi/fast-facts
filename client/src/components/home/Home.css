@@ -1,0 +1,19 @@
+.Home {
+  width: 50%;
+  background: rgba(175, 139, 139, 0.5);
+  background-color: #210719;
+  box-shadow: 2px 2px 3px 4px black;
+
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.Title {
+  color: white;
+  font-size: xx-large;
+}
+
+.ButtonLink {
+  color: #c50239 !important;
+  font-size: large !important;
+}
